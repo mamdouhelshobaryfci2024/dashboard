@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+    }
+
+    h1 {
+      color: #007acc;
+      margin-bottom: 20px;
+    }
+
+    .account-list {
+      margin-top: 20px;
+      width: 300px;
+      border: 1px solid #007acc;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #e6f7ff;
+    }
+
+    .account-item {
+      margin: 5px 0;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: #fff;
+    }
+
+    button {
+      margin-top: 20px;
+      font-size: 1rem;
+      padding: 10px;
+      border: 2px solid #007acc;
+      border-radius: 5px;
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005f99;
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin Accounts</h1>
+  <div class="account-list" id="accountList">
+   
+  </div>
+  <button onclick="redirectToCreate()">Add New Account</button>
+
+  <script>
+
+    function displayAccounts() {
+      const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+      const accountList = document.getElementById("accountList");
+      accountList.innerHTML = ""; 
+
+      if (accounts.length === 0) {
+        accountList.textContent = "No accounts available.";
+      } else {
+        accounts.forEach(account => {
+          const accountItem = document.createElement("div");
+          accountItem.className = "account-item";
+          accountItem.textContent = `Username: ${account.username}`;
+          accountList.appendChild(accountItem);
+        });
+      }
+    }
+
+    
+    function redirectToCreate() {
+      window.location.href = "create_account.html";
+    }
+
+    document.addEventListener("DOMContentLoaded", displayAccounts);
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            padding: 20px;
+        }
+        input, textarea, button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            max-width: 400px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>إضافة منشور</h1>
+    <input type="file" id="image" placeholder="إضافة صورة"><br>
+    <textarea id="text" placeholder="إضافة نص"></textarea><br>
+    <button onclick="savePost()">حفظ</button>
+
+    <script>
+        function savePost() {
+            const imageInput = document.getElementById('image');
+            const textInput = document.getElementById('text');
+
+            if (!textInput.value.trim()) {
+                alert("Please enter some text for the post.");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                const newPost = {
+                    id: Date.now(),
+                    img: reader.result, 
+                    details: textInput.value,
+                    comments: []
+                };
+
+                const postsData = JSON.parse(localStorage.getItem('postsData')) || [];
+                postsData.push(newPost); // إضافة البوست الجديد
+                localStorage.setItem('postsData', JSON.stringify(postsData)); 
+
+                alert("Post added successfully!");
+                window.location.href = "posts.html"; 
+            };
+
+            if (imageInput.files[0]) {
+                reader.readAsDataURL(imageInput.files[0]); 
+            } else {
+                alert("Please upload an image.");
+            }
+        }
+    </script>
+</body>
+</html>

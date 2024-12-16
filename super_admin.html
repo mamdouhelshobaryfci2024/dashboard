@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Admin</title>
+  <style>
+    body {
+      background: linear-gradient(45deg, #ffebcc, #ffccff, #ffebcc, #ffccff);
+      background-size: 400% 400%;
+      animation: gradientAnimation 10s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #6600cc;
+      padding: 20px;
+      background-color: #ffccff;
+      border-radius: 15px;
+      border: 5px solid #6600cc;
+      margin-bottom: 40px;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 20px;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      background-color: #66ccff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #3399ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome Super Admin</h1>
+  <div class="button-container">
+    <button onclick="viewPosts()">View Posts</button>
+    <button onclick="createAdmin()">Create Admin</button>
+  </div>
+
+  <script>
+    function viewPosts() {
+      window.location.href = 'posts.html';
+    }
+
+    function createAdmin() {
+      window.location.href = 'admin_login.html';
+    }
+  </script>
+</body>
+</html>

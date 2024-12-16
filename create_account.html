@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+    }
+
+    h1 {
+      color: #007acc;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, button {
+      font-size: 1rem;
+      padding: 10px;
+      border: 2px solid #007acc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005f99;
+    }
+  </style>
+</head>
+<body>
+  <h1>Create Account</h1>
+  <form id="createAccountForm">
+    <input type="text" id="newUsername" placeholder="New Username" required>
+    <input type="password" id="newPassword" placeholder="New Password" required>
+    <button type="button" onclick="createAccount()">Create Account</button>
+  </form>
+
+  <script>
+   
+  function createAccount() {
+  const username = document.getElementById("newUsername").value;
+  const password = document.getElementById("newPassword").value;
+
+  if (username && password) {
+    const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+    accounts.push({ username, password });
+    localStorage.setItem("accounts", JSON.stringify(accounts));
+    alert("Account created successfully!");
+    window.location.href = "index.html"; //     
+  } else {
+    alert("Please fill in all fields.");
+  }
+}
+
+</script>
+
+  </script>
+</body>
+</html>
